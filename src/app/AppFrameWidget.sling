@@ -1,0 +1,87 @@
+
+/*
+ * This file is part of Sling Sample App
+ * Copyright (c) 2021 Renzy Ortega
+ * All rights reserved.
+ */
+
+import jk.widget.common
+
+class #widget:
+
+class MySidebarItem #widget
+{
+	ui LayerWidget
+	{
+		margin = context.getHeightValue("2mm")
+		LabelWidget label {
+		}
+	}
+
+	pvar widgetClickHandler as function
+
+	func setWidgetText(value as string) as this
+	{
+		if not label:
+			forceCreateWidget()
+		label.setWidgetText(value)
+		return this
+	}
+
+	func initializeWidget override
+	{
+		base.initializeWidget()
+		Widget.setWidgetClickHandler(this, func {
+			if widgetClickHandler:
+				widgetClickHandler()
+		})
+	}
+}
+
+ui NavigationWidget
+{
+	actionBarBackgroundColor = Color.white()
+}
+
+func createSidebarWidget override as Widget
+{
+	var thisWidget = this
+	var items = new vector<Widget>
+	var logo = ImageWidget.forImageResource(context, "logo")
+	items += logo
+	items += new MySidebarItem(context).setWidgetText("MAIN")
+	items += new MySidebarItem(context).setWidgetText("Sidebar Menu 1").setWidgetClickHandler(func {
+		;
+	})
+	items += new MySidebarItem(context).setWidgetText("Sidebar Menu 2").setWidgetClickHandler(func {
+		;
+	})
+	items += new MySidebarItem(context).setWidgetText("Logout").setWidgetClickHandler(func {
+		var popup = new PopupDialogManager(context, thisWidget)
+		popup.showConfirmDialog("Confirmation", "Are you sure you want to logout?", func {
+			NavigationWidget.popFromContainer(thisWidget)
+		}, func {
+			;
+		})
+	})
+	var sidebar = SidebarWidget.forItems(context, items)
+	return sidebar
+}
+
+func createMainWidget override as Widget:
+	return new DashboardWidget(context)
+
+func switchTo(widget as Widget)
+{
+	hideSidebarWidget()
+	backToHome()
+	pushWidget(widget)
+}
+
+func backToHome
+{
+	var w as Widget
+	while((w = popWidget()) != null) {
+		;
+	}
+}

@@ -1,0 +1,25 @@
+
+/*
+ * This file is part of Sling Sample App
+ * Copyright (c) 2021 Renzy Ortega
+ * All rights reserved.
+ */
+
+import jk.widget
+import jk.widget.common
+
+class is ScreenForWidget #main #screen:
+
+func initialize override
+{
+	base.initialize()
+	var nav = new NavigationWidget(context)
+	nav.setWidgetEnableSidebar(false)
+	nav.setWidgetEnableActionBar(false)
+	setWidget(nav)
+	var loginWidget = new LoginWidget(context)
+	loginWidget.setWidgetClickHandler(func {
+		nav.pushWidget(new AppFrameWidget(context))
+	})
+	nav.pushWidget(loginWidget)
+}

@@ -1,0 +1,57 @@
+
+/*
+ * This file is part of Sling Sample App
+ * Copyright (c) 2021 Renzy Ortega
+ * All rights reserved.
+ */
+
+import jk.widget.common
+
+class #widget:
+
+ui LayerWithBackgroundColorWidget
+{
+	color = Color.white()
+	VerticalScrollerWidget {
+		AlignWidget {
+			VerticalBoxWidget {
+				widthRequest = context.getHeightValue("100mm")
+				spacing = context.getHeightValue("2mm")
+				LabelWidget {
+					text = "Welcome to MyPortal"
+					textAlign = LabelWidget.ALIGN_CENTER
+				}
+				TextInputWidget username {
+					placeholder = "Enter username here"
+					padding = context.getHeightValue("2mm")
+					backgroundColor = Color.instance("#CCCCCC")
+					textColor = Color.black()
+				}
+				TextInputWidget password {
+					type = TextInputWidget.TYPE_PASSWORD
+					placeholder = "Enter password here"
+					padding = context.getHeightValue("2mm")
+					backgroundColor = Color.instance("#CCCCCC")
+					textColor = Color.black()
+				}
+				TextButtonWidget btnLogin {
+					text = "LOGIN"
+					padding = context.getHeightValue("2mm")
+					backgroundColor = Color.black()
+					textColor = Color.white()
+					clickHandler = func {
+						onLoginClicked()
+					}
+				}
+			}
+		}
+	}
+}
+
+pvar widgetClickHandler as function
+
+func onLoginClicked
+{
+	if widgetClickHandler:
+		widgetClickHandler()
+}

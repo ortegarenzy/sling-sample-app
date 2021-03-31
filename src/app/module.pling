@@ -1,0 +1,8 @@
+
+/*
+ * This file is part of Sling Sample App
+ * Copyright (c) 2021 Renzy Ortega
+ * All rights reserved.
+ */
+
+resources = [ "images" ]

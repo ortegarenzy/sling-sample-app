@@ -1,0 +1,11 @@
+{
+    vendorId "rpo"
+    projectId "sling-sample"
+    title "Sling Sample App"
+    copyright "Copyright (c) 2021 Renzy Ortega"
+    lincense "All rights reserved."
+    libraries [
+        "jk-app:0.25.0"
+        "jk-net:0.38.0"
+    ]
+}

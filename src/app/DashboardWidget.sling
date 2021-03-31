@@ -1,0 +1,27 @@
+
+/*
+ * This file is part of Sling Sample App
+ * Copyright (c) 2021 Renzy Ortega
+ * All rights reserved.
+ */
+
+import jk.widget.common
+
+class #widget:
+
+ui LayerWithBackgroundColorWidget
+{
+	color = Color.instance("#F2F2F2")
+	VerticalBoxWidget {
+		margin = context.getHeightValue("4mm")
+		spacing = context.getHeightValue("2mm")
+		LabelWidget {
+			text = "Label 1"
+			fontSize = context.getHeightValue("3mm")
+		}
+		LabelWidget {
+			text = "Label 2"
+			fontSize = context.getHeightValue("2mm")
+		}
+	}
+}
